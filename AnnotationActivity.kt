@@ -16,3 +16,21 @@ private fun exportToPdf(bitmap: Bitmap) {
 
     Toast.makeText(this, "PDF saved at: $pdfPath", Toast.LENGTH_LONG).show()
 }
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.camera.view.PreviewView
+        android:id="@+id/previewView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <Button
+        android:id="@+id/btnCapture"
+        android:text="Capture"
+        android:layout_gravity="bottom|center"
+        android:layout_margin="24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</FrameLayout>
