@@ -1,0 +1,2 @@
+@HiltAndroidApp
+class ReportMakerApp : Application()
