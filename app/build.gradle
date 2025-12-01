@@ -1,36 +1,13 @@
-class AnnotationActivity : AppCompatActivity() {
+dependencies {
+    // CameraX
+    implementation "androidx.camera:camera-core:1.3.0"
+    implementation "androidx.camera:camera-camera2:1.3.0"
+    implementation "androidx.camera:camera-lifecycle:1.3.0"
+    implementation "androidx.camera:camera-view:1.3.0"
 
-    private lateinit var imageView: ImageView
-    private lateinit var editText: EditText
-    private lateinit var originalBitmap: Bitmap
+    // Image loading
+    implementation "com.github.bumptech.glide:glide:4.16.0"
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_annotation)
-
-        val path = intent.getStringExtra("imagePath")!!
-        originalBitmap = BitmapFactory.decodeFile(path)
-
-        imageView = findViewById(R.id.imageView)
-        editText = findViewById(R.id.textInput)
-        imageView.setImageBitmap(originalBitmap)
-
-        findViewById<Button>(R.id.btnExportPdf).setOnClickListener {
-            val finalBitmap = drawTextOnBitmap(originalBitmap, editText.text.toString())
-            exportToPdf(finalBitmap)
-        }
-    }
-
-    private fun drawTextOnBitmap(bitmap: Bitmap, text: String): Bitmap {
-        val result = bitmap.copy(Bitmap.Config.ARGB_8888, true)
-        val canvas = Canvas(result)
-
-        val paint = Paint()
-        paint.color = Color.WHITE
-        paint.textSize = 64f
-        paint.setShadowLayer(5f, 0f, 0f, Color.BLACK)
-
-        canvas.drawText(text, 40f, bitmap.height - 80f, paint)
-        return result
-    }
+    // PDF creation
+    implementation "com.itextpdf:itextg:5.5.10"   // works on Android
 }
